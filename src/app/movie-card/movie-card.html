@@ -1,0 +1,23 @@
+<div class="bg-gray-900 rounded-xl shadow-md overflow-hidden hover:scale-105 transform transition-all duration-300 w-56">
+  <img [src]="movie.Poster !== 'N/A' ? movie.Poster : 'assets/no-poster.png'" 
+       alt="{{ movie.Title }}" 
+       class="w-full h-72 object-cover">
+
+  <div class="p-3 flex flex-col justify-between">
+    <h3 class="text-md font-bold text-white truncate">{{ movie.Title }}</h3>
+    <p class="text-xs text-gray-400">{{ movie.Year }}</p>
+
+    <div class="flex space-x-1 my-1">
+      <ng-container *ngFor="let star of [1,2,3,4,5]">
+        <button (click)="setRating(star)">
+          <span [class.text-yellow-400]="star <= rating" class="text-gray-500 text-lg">★</span>
+        </button>
+      </ng-container>
+    </div>
+
+    <button (click)="addMovie()"
+      class="w-full bg-blue-600 hover:bg-blue-700 text-white py-1.5 rounded-lg mt-2 transition text-sm">
+      ➕ Add to Watchlist
+    </button>
+  </div>
+</div>

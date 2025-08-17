@@ -1,0 +1,32 @@
+<section class="relative bg-gradient-to-r h-screen overflow-hidden from-gray-900 via-black to-gray-900 text-white">
+  <app-header></app-header>
+
+  <div class="relative max-w-7xl mx-auto px-6 py-14 lg:py-15 flex flex-col lg:flex-row items-center lg:items-start">
+    
+    <div class="lg:w-1/2 space-y-6 text-center lg:text-left">
+      <h1 class="text-4xl lg:text-6xl font-extrabold leading-tight">
+        Discover & Save <span class="text-yellow-400">Your Favorite Movies</span>
+      </h1>
+      <p class="text-lg text-gray-300 max-w-xl mx-auto lg:mx-0">
+        Search from thousands of movies, create your personal watchlist, and rate them anytime.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+        <a routerLink="/search" 
+           class="bg-yellow-400 text-black px-6 py-3 rounded-xl font-semibold hover:bg-yellow-300 transition">
+          🔍 Start Searching
+        </a>
+        <a routerLink="/watchlist" 
+           class="bg-gray-700 px-6 py-3 rounded-xl font-semibold hover:bg-gray-600 transition">
+          🎬 My Watchlist
+        </a>
+      </div>
+    </div>
+
+    <div class="lg:w-1/2 mt-10 lg:mt-0 flex justify-center lg:justify-end">
+        <img src="https://m.media-amazon.com/images/M/MV5BMTUyODgwMDU3M15BMl5BanBnXkFtZTcwOTM4MjcxOQ@@._V1_.jpg"
+           alt="Movie Poster"
+           class="rounded-2xl shadow-2xl w-64 lg:w-80 border-4 border-yellow-400">
+    </div>
+  </div>
+</section>

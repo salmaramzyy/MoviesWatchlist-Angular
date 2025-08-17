@@ -1,0 +1,9 @@
+/* Smooth hover animation */
+:host {
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+
+:host(:hover) {
+  transform: translateY(-5px);
+}
