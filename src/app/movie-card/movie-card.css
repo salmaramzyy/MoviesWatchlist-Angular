@@ -5,5 +5,5 @@
 }
 
 :host(:hover) {
-  transform: translateY(-5px);
+  transform: translateY(-9px);
 }

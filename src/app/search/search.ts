@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MovieService } from '../movie.service';
 import { MovieCardComponent } from "../movie-card/movie-card";
 import { Header } from "../header/header";
+import { WatchlistService } from '../watchlist.service';
 
 @Component({
   selector: 'app-search',
@@ -19,7 +20,8 @@ export class Search {
   movies: any[] = [];
   hasSearched = false; 
 
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService, private watchlistService: WatchlistService) {}
+
 
   onSearch() {
     this.hasSearched = true;
@@ -34,7 +36,8 @@ export class Search {
   }
 
 onAddToWatchlist(movie: any) {
-  console.log('Added to watchlist:', movie);
+  this.watchlistService.addMovie(movie);
+  alert('🎬 Movie added to Watchlist ✅');
 }
 
 }

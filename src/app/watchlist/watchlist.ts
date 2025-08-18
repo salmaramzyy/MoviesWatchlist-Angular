@@ -1,19 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { WatchlistService } from '../services/watchlist.service';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { WatchlistService } from '../watchlist.service';
+import { Header } from "../header/header";
 import { MovieCardComponent } from "../movie-card/movie-card";
 
 @Component({
   selector: 'app-watchlist',
-  templateUrl: './watchlist.html',
-  styleUrls: ['./watchlist.css'],
-  imports: [MovieCardComponent]
+  standalone: true,
+  imports: [CommonModule, Header, MovieCardComponent],
+  templateUrl: './watchlist.html'
 })
-export class WatchlistComponent implements OnInit {
-  watchlist: any[] = [];
 
-  constructor(private watchlistService: WatchlistService) {}
+export class Watchlist {
+  readonly movies$;
 
-  ngOnInit() {
-    this.watchlist = this.watchlistService.getWatchlist();
+  constructor(private watchlistService: WatchlistService) {
+    this.movies$ = this.watchlistService.watchlist$;
+  }
+
+  removeFromWatchlist(id: string) {
+    this.watchlistService.removeMovie(id);
   }
 }
+

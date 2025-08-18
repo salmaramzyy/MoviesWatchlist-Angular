@@ -9,8 +9,11 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./movie-card.css']
 })
 export class MovieCardComponent {
+
   @Input() movie: any;
+  @Input() inWatchlist = false;
   @Output() addToWatchlist = new EventEmitter<any>();
+  @Output() removeFromWatchlist = new EventEmitter<string>();
 
   rating = 0;
 

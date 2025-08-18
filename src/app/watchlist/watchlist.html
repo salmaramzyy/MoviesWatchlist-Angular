@@ -1,14 +1,21 @@
-<div class="watchlist-container">
-  <h2>My Watchlist</h2>
+<app-header></app-header>
 
-  <div *ngIf="watchlist.length === 0">
-    No movies in your watchlist yet.
-  </div>
+<section class="relative bg-gray-900 text-white py-10 px-6">
+  <h2 class="text-3xl font-bold text-yellow-400 mb-6 flex items-center justify-center">My Watchlist</h2>
 
-  <div class="movies-grid">
-    <app-movie-card 
-      *ngFor="let movie of watchlist"
-      [movie]="movie">
-    </app-movie-card>
-  </div>
-</div>
+  <ng-container *ngIf="movies$ | async as movies">
+    <div *ngIf="movies.length > 0; else emptyList"
+         class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
+      
+      <app-movie-card 
+          *ngFor="let movie of movies"
+          [movie]="movie"
+          (removeFromWatchlist)="removeFromWatchlist(movie.imdbID)">
+      </app-movie-card>
+    </div>
+  </ng-container>
+
+  <ng-template #emptyList>
+    <p class="text-gray-400 text-lg flex items-center justify-center">Your watchlist is empty</p>
+  </ng-template>
+</section>
