@@ -6,18 +6,20 @@
   <ng-container *ngIf="movies$ | async as movies">
     <div *ngIf="movies.length > 0; else emptyList"
          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
-      
-  <app-movie-card 
-      *ngFor="let movie of movies"
-      [movie]="movie"
-      [inWatchlist]="true"   
-      (removeFromWatchlist)="removeFromWatchlist($event)">
-  </app-movie-card>
 
+      <app-movie-card 
+        *ngFor="let movie of movies"
+        [movie]="movie"
+        [inWatchlist]="true"
+        (removeFromWatchlist)="removeFromWatchlist($event)"
+        (ratingChanged)="updateMovieRating($event)">
+      </app-movie-card>
     </div>
   </ng-container>
 
   <ng-template #emptyList>
-    <p class="text-gray-400 text-lg flex items-center justify-center">Your watchlist is empty</p>
+    <p class="text-gray-400 text-lg flex items-center justify-center">
+      Your watchlist is empty
+    </p>
   </ng-template>
 </section>

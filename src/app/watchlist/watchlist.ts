@@ -10,7 +10,6 @@ import { MovieCardComponent } from "../movie-card/movie-card";
   imports: [CommonModule, Header, MovieCardComponent],
   templateUrl: './watchlist.html'
 })
-
 export class Watchlist {
   readonly movies$;
 
@@ -20,5 +19,9 @@ export class Watchlist {
 
   removeFromWatchlist(id: string) {
     this.watchlistService.removeMovie(id);
+  }
+
+  updateMovieRating(event: { imdbID: string, rating: number }) {
+    this.watchlistService.updateRating(event.imdbID, event.rating);
   }
 }

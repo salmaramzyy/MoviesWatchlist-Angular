@@ -25,15 +25,23 @@ export class WatchlistService {
   addMovie(movie: any) {
     const updated = [...this.watchlistSource.value];
     if (!updated.some(m => m.imdbID === movie.imdbID)) {
-      updated.push(movie);
+      updated.push({ ...movie, rating: 0 }); 
       this.watchlistSource.next(updated);
-      this.saveToStorage(updated);  // persist
+      this.saveToStorage(updated);
     }
   }
 
   removeMovie(imdbID: string) {
     const updated = this.watchlistSource.value.filter(m => m.imdbID !== imdbID);
     this.watchlistSource.next(updated);
-    this.saveToStorage(updated);  // persist
+    this.saveToStorage(updated);
+  }
+
+  updateRating(imdbID: string, rating: number) {
+    const updated = this.watchlistSource.value.map(m =>
+      m.imdbID === imdbID ? { ...m, rating } : m
+    );
+    this.watchlistSource.next(updated);
+    this.saveToStorage(updated);
   }
 }

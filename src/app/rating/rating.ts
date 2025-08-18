@@ -1,11 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-rating',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './rating.html',
-  styleUrl: './rating.css'
+  styleUrls: ['./rating.css']
 })
-export class Rating {
+export class RatingComponent {
+  @Input() rating = 0;  
+  @Output() ratingChange = new EventEmitter<number>();
 
+  setRating(star: number) {
+    this.rating = star;
+    this.ratingChange.emit(this.rating);
+  }
 }
