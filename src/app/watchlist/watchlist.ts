@@ -22,4 +22,3 @@ export class Watchlist {
     this.watchlistService.removeMovie(id);
   }
 }
-

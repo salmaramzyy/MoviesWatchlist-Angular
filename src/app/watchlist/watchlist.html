@@ -7,11 +7,13 @@
     <div *ngIf="movies.length > 0; else emptyList"
          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
       
-      <app-movie-card 
-          *ngFor="let movie of movies"
-          [movie]="movie"
-          (removeFromWatchlist)="removeFromWatchlist(movie.imdbID)">
-      </app-movie-card>
+  <app-movie-card 
+      *ngFor="let movie of movies"
+      [movie]="movie"
+      [inWatchlist]="true"   
+      (removeFromWatchlist)="removeFromWatchlist($event)">
+  </app-movie-card>
+
     </div>
   </ng-container>
 

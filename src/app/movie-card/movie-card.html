@@ -15,9 +15,18 @@
       </ng-container>
     </div>
 
-    <button (click)="addMovie()"
+    <!-- ✅ Only show Add if NOT in Watchlist -->
+    <button *ngIf="!inWatchlist" 
+      (click)="addToWatchlist.emit(movie)"
       class="w-full bg-purple-600 hover:bg-blue-700 text-white py-1.5 rounded-lg mt-2 transition text-sm">
       ➕ Add to Watchlist
+    </button>
+
+    <!-- ✅ Only show Remove if in Watchlist -->
+    <button *ngIf="inWatchlist" 
+      (click)="removeFromWatchlist.emit(movie.imdbID)" 
+      class="mt-3 bg-red-500 px-4 py-2 rounded text-white font-semibold hover:bg-red-400 transition w-full">
+      ❌ Remove
     </button>
   </div>
 </div>

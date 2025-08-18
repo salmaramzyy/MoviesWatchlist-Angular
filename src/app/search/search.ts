@@ -40,4 +40,7 @@ onAddToWatchlist(movie: any) {
   alert('🎬 Movie added to Watchlist ✅');
 }
 
+
+
+
 }
