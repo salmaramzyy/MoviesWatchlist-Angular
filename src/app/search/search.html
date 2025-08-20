@@ -15,9 +15,10 @@
         placeholder="Search movies..."
         class="flex-grow px-6 py-4 text-white font-bold text-lg focus:outline-none"
         [(ngModel)]="searchQuery"
+        (ngModelChange)="debouncedSearch($event)"  
       />
       <button
-        (click)="onSearch()"
+        (click)="debouncedSearch(searchQuery)"      
         class="bg-yellow-400 text-black px-6 py-4 font-semibold hover:bg-yellow-300 transition"
       >
         🔍 Search
@@ -25,21 +26,34 @@
     </div>
   </div>
 
-<div *ngIf="movies.length > 0; else noMovies" 
-     class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
-  <app-movie-card 
-      *ngFor="let movie of movies"
-      [movie]="movie"
-      (addToWatchlist)="onAddToWatchlist($event)">
-  </app-movie-card>
+  <!-- Movies Grid -->
+  <div *ngIf="movies.length > 0; else noMovies" 
+       class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
+    <app-movie-card 
+        *ngFor="let movie of movies"
+        [movie]="movie"
+        (addToWatchlist)="onAddToWatchlist($event)">
+    </app-movie-card>
+  </div>
 
-</div>
+  <!-- Load More -->
+  <div class="text-center mt-8" *ngIf="movies.length < totalResults && !loading">
+    <button 
+      (click)="loadMore()" 
+      class="px-6 py-3 bg-yellow-400 text-black font-semibold rounded-lg hover:bg-yellow-300 transition">
+      Load More
+    </button>
+  </div>
 
-<ng-template #noMovies>
-  <p class="text-center text-gray-400 mt-10 text-lg">
-    ❌ No items found. Try another item.
-  </p>
-</ng-template>
+  <!-- Loading Spinner -->
+  <div class="text-center mt-6" *ngIf="loading">
+    <p class="text-gray-400 animate-pulse">Loading movies...</p>
+  </div>
 
-
+  <!-- No Movies -->
+  <ng-template #noMovies>
+    <p class="text-center text-gray-400 mt-10 text-lg" *ngIf="hasSearched && !loading">
+      ❌ No items found. Try another item.
+    </p>
+  </ng-template>
 </section>

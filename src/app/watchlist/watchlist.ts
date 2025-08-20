@@ -17,11 +17,12 @@ export class Watchlist {
     this.movies$ = this.watchlistService.watchlist$;
   }
 
-  removeFromWatchlist(id: string) {
-    this.watchlistService.removeMovie(id);
-  }
+  removeFromWatchlist(id: number) {
+  this.watchlistService.removeMovie(id);
+}
 
-  updateMovieRating(event: { imdbID: string, rating: number }) {
-    this.watchlistService.updateRating(event.imdbID, event.rating);
-  }
+updateMovieRating(event: { id: number, rating: number }) {
+  this.watchlistService.updateRating(event.id, event.rating);
+}
+
 }
