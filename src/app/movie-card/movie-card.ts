@@ -23,6 +23,6 @@ export class MovieCardComponent {
 
   onRatingChange(newRating: number) {
     this.movie.rating = newRating;
-    this.ratingChanged.emit({ id: this.movie.id, rating: newRating }); // ✅ TMDB id is a number
+    this.ratingChanged.emit({ id: this.movie.id, rating: newRating }); 
   }
 }

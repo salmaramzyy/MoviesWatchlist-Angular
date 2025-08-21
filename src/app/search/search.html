@@ -27,6 +27,7 @@
   </div>
 
   <!-- Movies Grid -->
+
   <div *ngIf="movies.length > 0; else noMovies" 
        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-10">
     <app-movie-card 

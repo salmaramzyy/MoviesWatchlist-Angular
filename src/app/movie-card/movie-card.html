@@ -10,9 +10,15 @@
     <h3 class="text-md font-bold text-white truncate">{{ movie.title }}</h3>
     <p class="text-xs text-gray-400">{{ movie.year }}</p>
 
-    <!-- Rating -->
-    <app-rating [rating]="movie.rating || 0" (ratingChange)="onRatingChange($event)">
+    <!-- Star Rating -->
+    <app-rating [rating]="movie.vote_average || 0" (ratingChange)="onRatingChange($event)">
     </app-rating>
+
+    <!-- Numeric Rating -->
+    <p class="text-xs text-gray-300 mt-1">
+      {{ movie.vote_average }} / 10
+    </p>
+
 
     <!-- Add / Remove Buttons -->
     <button *ngIf="!inWatchlist"

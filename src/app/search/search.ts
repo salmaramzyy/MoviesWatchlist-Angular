@@ -73,7 +73,7 @@ export class Search implements OnInit {
 
     if (query.trim()) {
       this.movieService.searchMovies(query, page).subscribe((data: any) => {
-        console.log('TMDB search response:', data); // ✅ Debug log
+        console.log('TMDB search response:', data); 
         this.totalResults = data.total_results || 0;
 
         const newMovies = (data.results || []).map((movie: any) => ({
@@ -83,14 +83,20 @@ export class Search implements OnInit {
           poster: movie.poster_path 
             ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
             : 'assets/no-poster.png',
-          rating: movie.rating || 0
+          rating: movie.vote_average,  
+        vote_average:movie.vote_average ? (movie.vote_average / 2) : 0,  
+           
         }));
+        console.log("here");
+
+        console.log(newMovies[0]);
+
+
 
         this.movies = [...this.movies, ...newMovies];
         this.loading = false;
       });
     } else {
-      // Default: show popular movies
       this.loadMovies(page);
     }
   }
@@ -98,7 +104,7 @@ export class Search implements OnInit {
   private loadMovies(page: number = 1) {
     this.loading = true;
     this.movieService.getDefaultMovies(page).subscribe((data: any) => {
-      console.log('TMDB default movies:', data); // ✅ Debug log
+      console.log('TMDB default movies:', data);
       this.totalResults = data.total_results || 0;
 
       const newMovies = (data.results || []).map((movie: any) => ({
@@ -108,6 +114,7 @@ export class Search implements OnInit {
         poster: movie.poster_path 
           ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
           : 'assets/no-poster.png',
+        vote_average:movie.vote_average ? (movie.vote_average / 2) : 0,  
         rating: movie.rating || 0
       }));
 

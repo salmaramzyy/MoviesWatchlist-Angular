@@ -1,0 +1,66 @@
+<app-header></app-header>
+
+<div class="flex justify-center items-start bg-white py-16 px-6">
+  <div class="w-full max-w-2xl">
+    <h2 class="text-3xl font-extrabold mb-4">Login to your account</h2>
+
+    <p class="text-gray-700 text-base leading-relaxed mb-8">
+      In order to use the editing and rating capabilities of Watchlist, as well as get personal
+      recommendations you will need to login to your account. If you do not have an account,
+      registering for an account is free and simple.
+      <a [routerLink]="['/register']" class="text-blue-600 hover:underline">Click here</a> to get started.
+    </p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
+      <!-- Email -->
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-800 mb-2">Email</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="demo@gmail.com"
+          class=" placeholder-gray-400 w-full border border-gray-300 rounded-md px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-800 mb-2">Password</label>
+        <input
+          id="password"
+          [type]="showPassword ? 'text' : 'password'"
+          formControlName="password"
+          placeholder="••••••••"
+          class="placeholder-gray-400 w-full border border-gray-300 rounded-md px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <!-- Show password-->
+      <div class="flex items-center space-x-2">
+        <input
+          type="checkbox"
+          id="showPassword"
+          formControlName="showPassword"
+          class="h-4 w-4 text-blue-600 border-gray-300 rounded"
+        />
+        <label for="showPassword" class="text-sm text-gray-700">Show Password</label>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center space-x-4">
+        <button
+          type="submit"
+          class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-md shadow"
+        >
+          Login
+        </button>
+        <a href="#" class="text-blue-600 text-sm hover:underline">Reset password</a>
+      </div>
+      <div *ngIf="errorMessage" class="mb-4 p-3 rounded-md bg-red-100 text-red-700">
+        {{ errorMessage }}
+      </div>
+
+    </form>
+  </div>
+</div>

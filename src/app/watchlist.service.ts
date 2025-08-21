@@ -22,14 +22,27 @@ export class WatchlistService {
     return this.watchlistSource.value;
   }
 
-  addMovie(movie: any) {
-  const updated = [...this.watchlistSource.value];
-  if (!updated.some(m => m.id === movie.id)) {   // TMDB id
-    updated.push({ ...movie, rating: 0 });
+  // addMovie(movie: any) {
+  //   const updated = [...this.watchlistSource.value];
+  //   if (!updated.some(m => m.id === movie.id)) {
+  //     updated.push({ ...movie, rating: movie.vote_average || 0 });  
+  //     this.watchlistSource.next(updated);
+  //     this.saveToStorage(updated);
+  //   }
+  // }
+
+addMovie(movie: any) {
+  const current = this.watchlistSource.value;
+  if (!current.find(m => m.id === movie.id)) {
+    const updated = [
+      ...current,
+      { ...movie, vote_average: movie.vote_average, rating: movie.vote_average || 0 }
+    ];
     this.watchlistSource.next(updated);
     this.saveToStorage(updated);
   }
 }
+
 
 removeMovie(id: number) {
   const updated = this.watchlistSource.value.filter(m => m.id !== id);

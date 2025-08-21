@@ -1,0 +1,69 @@
+<app-header></app-header>
+
+<div class="flex justify-center items-start bg-white pt-8 py-16 px-6">
+  <div class="w-full max-w-2xl">
+    <mat-card class="p-10 shadow-lg rounded-2xl border border-gray-200">
+      <!-- Title -->
+      <h2 class="text-3xl font-extrabold mb-3">Sign up for an account</h2>
+      <p class="text-gray-700 text-base leading-relaxed mb-10">
+        Signing up for an account is free and easy. Fill out the form below to get started. 
+      </p>
+
+      <!-- Form -->
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        
+        <!-- Username -->
+        <mat-form-field appearance="fill" class="w-full " hideRequiredMarker >
+          <mat-label style="padding-right:8px;">Username</mat-label>
+          <input matInput type="text" formControlName="name" required/>
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field appearance="fill" class="w-full" hideRequiredMarker>
+          <mat-label style="padding-right:8px;">Email</mat-label>
+          <input matInput type="email" formControlName="email" required/>
+        </mat-form-field>
+
+        <!-- Password -->
+        <mat-form-field appearance="fill" class="w-full" hideRequiredMarker>
+          <mat-label style="padding-right:8px;">Password</mat-label>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required/>
+          <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <!-- Confirm Password -->
+        <mat-form-field appearance="fill" class="w-full" hideRequiredMarker>
+          <mat-label style="padding-right:8px;">Confirm Password</mat-label>
+          <input matInput [type]="hideConfirm ? 'password' : 'text'" formControlName="rePassword" required/>
+          <button mat-icon-button matSuffix type="button" (click)="hideConfirm = !hideConfirm">
+            <mat-icon>{{hideConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <!-- Terms -->
+        <p class="text-sm text-gray-600">
+          By clicking the 'Sign up' button below, I certify that I have read and agree to the TMDB terms of use and privacy policy.
+        </p>
+
+        <!-- Actions -->
+        <div class="flex items-center gap-6 mt-6">
+          <button
+            mat-raised-button
+            class="!bg-blue-700 hover:!bg-blue-300 !text-white font-medium px-6 py-3 rounded-lg shadow-md"
+          >
+            Sign Up
+          </button>
+          <button
+            type="button"
+            class="text-blue-600 hover:underline font-medium"
+            (click)="onCancel()"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>
