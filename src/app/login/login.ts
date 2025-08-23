@@ -3,13 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router'; 
 import { AuthService } from '../auth.service';
-import { Header } from '../header/header';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.html',
   styleUrls: ['./login.css'], 
-  imports: [CommonModule, ReactiveFormsModule, Header , RouterModule],
+  imports: [CommonModule, ReactiveFormsModule,RouterModule],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {

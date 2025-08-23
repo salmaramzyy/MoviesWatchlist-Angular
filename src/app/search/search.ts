@@ -6,7 +6,6 @@ import { MovieService } from '../movie.service';
 import { MovieCardComponent } from "../movie-card/movie-card";
 import { Header } from "../header/header";
 import { WatchlistService } from '../watchlist.service';
-import { RatingComponent } from '../rating/rating'; 
 
 // Debounce function
 const debounce = <T extends unknown[]>(
@@ -33,7 +32,7 @@ const debounce = <T extends unknown[]>(
     HttpClientModule, 
     MovieCardComponent, 
     Header, 
-    RatingComponent 
+     
   ],
   templateUrl: './search.html',
   styleUrls: ['./search.css']
@@ -79,18 +78,14 @@ export class Search implements OnInit {
         const newMovies = (data.results || []).map((movie: any) => ({
           id: movie.id,
           title: movie.title,
-          year: movie.release_date ? movie.release_date.split('-')[0] : 'N/A',
+          year: movie.release_date ,
           poster: movie.poster_path 
             ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
             : 'assets/no-poster.png',
           rating: movie.vote_average,  
-        vote_average:movie.vote_average ? (movie.vote_average / 2) : 0,  
+        vote_average:movie.vote_average ,  
            
         }));
-        console.log("here");
-
-        console.log(newMovies[0]);
-
 
 
         this.movies = [...this.movies, ...newMovies];
@@ -110,11 +105,11 @@ export class Search implements OnInit {
       const newMovies = (data.results || []).map((movie: any) => ({
         id: movie.id,
         title: movie.title,
-        year: movie.release_date ? movie.release_date.split('-')[0] : 'N/A',
+        year: movie.release_date ,
         poster: movie.poster_path 
           ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
           : 'assets/no-poster.png',
-        vote_average:movie.vote_average ? (movie.vote_average / 2) : 0,  
+        vote_average:movie.vote_average ,  
         rating: movie.rating || 0
       }));
 

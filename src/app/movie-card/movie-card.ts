@@ -1,11 +1,10 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RatingComponent } from '../rating/rating';
 
 @Component({
   selector: 'app-movie-card',
   standalone: true,
-  imports: [CommonModule, RatingComponent],
+  imports: [CommonModule],
   templateUrl: './movie-card.html',
   styleUrls: ['./movie-card.css']
 })

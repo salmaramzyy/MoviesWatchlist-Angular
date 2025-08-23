@@ -21,8 +21,4 @@ export class Watchlist {
   this.watchlistService.removeMovie(id);
 }
 
-updateMovieRating(event: { id: number, rating: number }) {
-  this.watchlistService.updateRating(event.id, event.rating);
-}
-
 }
