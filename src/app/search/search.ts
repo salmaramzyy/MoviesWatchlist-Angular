@@ -37,7 +37,7 @@ const debounce = <T extends unknown[]>(
   templateUrl: './search.html',
   styleUrls: ['./search.css']
 })
-export class Search implements OnInit {
+export class SearchComponent implements OnInit {
   searchQuery = '';
   movies: any[] = [];
   hasSearched = false; 
