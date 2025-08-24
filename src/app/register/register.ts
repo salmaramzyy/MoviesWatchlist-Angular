@@ -10,7 +10,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';   
-import { Header } from "../header/header";
 
 @Component({
   selector: 'app-register',
@@ -23,8 +22,7 @@ import { Header } from "../header/header";
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    MatIconModule,   
-    Header
+    MatIconModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

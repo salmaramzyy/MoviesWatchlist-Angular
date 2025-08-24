@@ -1,21 +1,27 @@
 <div class="bg-gray-900 rounded-xl shadow-md overflow-hidden hover:scale-105 transform transition-all duration-300 w-56">
   <!-- Poster -->
-  <img 
-    [src]="movie.poster && movie.poster !== 'N/A' ? movie.poster : 'assets/no-poster.png'" 
-    alt="{{ movie.title }}" 
-    class="w-full h-72 object-cover">
+  <a [routerLink]="['/movie', movie.id]">
+    <img 
+      [src]="movie.poster && movie.poster !== 'N/A' ? movie.poster : 'assets/no-poster.png'" 
+      alt="{{ movie.title }}" 
+      class="w-full h-72 object-cover cursor-pointer">
+  </a>
 
   <div class="p-3 flex flex-col justify-between">
     <!-- Title -->
-    <h3 class="text-md font-bold text-white truncate">{{ movie.title }}</h3>
-    <p class="text-xs text-gray-400 mt-1">{{ movie.year | date:'MMM d, y'}}</p>
+    <a [routerLink]="['/movie', movie.id]" 
+      class="cursor-pointer text-md font-bold font-sans text-white truncate hover:text-blue-600 transition-colors">
+      <h3 class="text-md font-bold font-sans truncate">
+        {{ movie.title }}
+      </h3>
+    </a>
 
+    <p class="text-xs text-gray-400 mt-1">{{ movie.year | date:'MMM d, y'}}</p>
 
     <!-- Numeric Rating -->
     <p class="text-xs text-gray-300 mt-1">
-      {{ movie.vote_average}} / 10 
+      ⭐ {{ movie.vote_average}} / 10 
     </p>
-
 
     <!-- Add / Remove Buttons -->
     <button *ngIf="!inWatchlist"

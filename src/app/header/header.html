@@ -2,20 +2,32 @@
   <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
     
     <div class="flex items-center space-x-3">
-      <span class="text-4xl font-extrabold tracking-wide text-yellow-400 hover:text-yellow-200  transition duration-300">
+      <span class="text-4xl font-extrabold tracking-wide text-yellow-400 hover:text-yellow-200 transition duration-300">
         🎬 WatchList
       </span>
     </div>
 
+    <!-- Desktop Navbar -->
     <nav class="hidden md:flex space-x-8 text-lg font-medium">
       <a routerLink="/home" routerLinkActive="text-yellow-400"
-       class="block text-lg hover:text-yellow-300 transition">Home</a>
+         class="block text-lg hover:text-yellow-300 transition">Home</a>
       <a routerLink="/search" routerLinkActive="text-yellow-400"
          class="hover:text-yellow-300 transition duration-200">Search</a>
       <a routerLink="/watchlist" routerLinkActive="text-yellow-400"
          class="hover:text-yellow-300 transition duration-200">Watchlist</a>
+
+      <!-- Show Login/Register if NOT logged in -->
+      <a *ngIf="!auth.isLoggedIn()" routerLink="/login" 
+         class="hover:text-blue-400 transition">Login</a>
+      <a *ngIf="!auth.isLoggedIn()" routerLink="/register" 
+         class="hover:text-green-400 transition">Register</a>
+
+      <!-- Show Logout if logged in -->
+      <a *ngIf="auth.isLoggedIn()" routerLink="/logout" 
+         class="hover:text-red-500 transition">Logout</a>
     </nav>
 
+    <!-- Mobile Toggle Button -->
     <button (click)="toggleMenu()" 
             class="md:hidden p-2 rounded-lg bg-gray-700 hover:bg-gray-600 transition duration-200">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
@@ -27,11 +39,21 @@
     </button>
   </div>
 
-  <div *ngIf="isMenuOpen" 
-       class="md:hidden bg-gray-800 px-6 py-4 space-y-3 animate-slide-down">
+  <!-- Mobile Menu -->
+  <div *ngIf="isMenuOpen" class="md:hidden bg-gray-800 px-6 py-4 space-y-3 animate-slide-down">
     <a routerLink="/search" routerLinkActive="text-yellow-400"
        class="block text-lg hover:text-yellow-300 transition">Search</a>
     <a routerLink="/watchlist" routerLinkActive="text-yellow-400"
        class="block text-lg hover:text-yellow-300 transition">Watchlist</a>
+
+    <!-- Show Login/Register if NOT logged in -->
+    <a *ngIf="!auth.isLoggedIn()" routerLink="/login" 
+       class="block text-lg hover:text-blue-400 transition">Login</a>
+    <a *ngIf="!auth.isLoggedIn()" routerLink="/register" 
+       class="block text-lg hover:text-green-400 transition">Register</a>
+
+    <!-- Show Logout if logged in -->
+    <a *ngIf="auth.isLoggedIn()" routerLink="/logout" 
+       class="block text-lg hover:text-red-500 transition">Logout</a>
   </div>
 </header>

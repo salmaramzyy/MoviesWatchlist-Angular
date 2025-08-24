@@ -9,6 +9,14 @@ import { environment } from './environment';
 export class MovieService {
   private apiUrl = environment.tmdbApiUrl;
   private token = environment.tmdbReadAccessToken;
+  private apiKey: string = '255ab5317bb98af218b92ff37ebc0926';
+  
+  private headers = {
+    headers: {
+      Authorization: `Bearer ${environment.tmdbApiKey}`,
+      accept: 'application/json'
+    }
+  };
 
   constructor(private http: HttpClient) { }
 
@@ -34,10 +42,28 @@ export class MovieService {
     });
   }
 
-  // Movie details
   getMovieDetails(id: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/movie/${id}`, {
-      headers: this.getHeaders()
-    });
-  }
+  const url = `${this.apiUrl}/movie/${id}?language=en-US&append_to_response=credits,videos,images,recommendations,similar,reviews,release_dates`;
+  return this.http.get(url, {
+    headers: { Authorization: `Bearer ${this.token}` }
+  });
 }
+
+getConfiguration() {
+    return this.http.get(`${this.apiUrl}/configuration`, this.headers);
+  }
+
+  getCollectionImages(collectionId: number) {
+    return this.http.get(`${this.apiUrl}/collection/${collectionId}/images`, this.headers);
+  }
+
+  getMovieVideos(movieId: number) {
+    return this.http.get<any>(
+      `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${this.apiKey}&language=en-US`
+    );
+  }
+
+
+}
+
+
