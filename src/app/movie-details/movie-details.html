@@ -9,11 +9,12 @@
     style="background-size: cover; background-position: center; z-index: -1;">
   </div>
 
-  <!-- Overlay for readability -->
+  <!-- Overlay -->
   <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/90 z-[-1]"></div>
 
   <!-- Content -->
   <div class="relative max-w-6xl mx-auto p-8 flex flex-col md:flex-row gap-10">
+    
     <!-- Poster -->
     <div class="flex-shrink-0">
       <img 
@@ -38,28 +39,23 @@
         <span>{{ movie.status }}</span>
       </div>
 
-      <!-- Rating (TMDB-style) -->
-<div class="flex items-center gap-4 mb-6">
-  <!-- Donut Meter -->
-  <div class="relative w-16 h-16">
-    <!-- Outer ring -->
-    <div class="absolute inset-0 rounded-full bg-[#0d253f]"></div>
-    <!-- Progress arc -->
-    <div class="absolute inset-[3px] rounded-full" [ngStyle]="circleStyle"></div>
-    <!-- Inner hole + number -->
-    <div class="absolute inset-[7px] rounded-full bg-gray-900 flex items-center justify-center">
-      <span class="font-extrabold text-base leading-none">
-        {{ userScore }}<span class="text-[10px] align-super">%</span>
-      </span>
-    </div>
-  </div>
-
-  <!-- "User / Score" stacked text -->
-  <div class="leading-tight">
-    <div class="text-sm font-semibold">User</div>
-    <div class="text-sm font-semibold">Score</div>
-  </div>
-</div>
+      <!-- Rating -->
+      <div class="flex items-center gap-4 mb-6">
+        <!-- Donut Meter -->
+        <div class="relative w-16 h-16">
+          <div class="absolute inset-0 rounded-full bg-[#0d253f]"></div>
+          <div class="absolute inset-[3px] rounded-full" [ngStyle]="circleStyle"></div>
+          <div class="absolute inset-[7px] rounded-full bg-gray-900 flex items-center justify-center">
+            <span class="font-extrabold text-base leading-none">
+              {{ userScore }}<span class="text-[10px] align-super">%</span>
+            </span>
+          </div>
+        </div>
+        <div class="leading-tight">
+          <div class="text-sm font-semibold">User</div>
+          <div class="text-sm font-semibold">Score</div>
+        </div>
+      </div>
 
       <!-- Overview -->
       <h3 class="text-xl font-semibold mb-2">Overview</h3>
@@ -84,22 +80,24 @@
         <strong class="text-xl font-semibold mr-2">Production:</strong>
         <span *ngFor="let pc of movie.production_companies">{{ pc.name }} </span>
       </p>
+    </div>
+  </div>
 
-      <!-- Trailer -->
-      <div *ngIf="trailerUrl" class="mt-6">
-      <h3 class="text-xl font-semibold mb-3 text-white">Trailer</h3>
+  <!-- 🎬 Trailer Section -->
+  <div *ngIf="trailerUrl" class="max-w-6xl mx-auto p-8">
+   <h3 class="text-2xl font-bold mb-4 border-b border-gray-700 pb-2 flex items-center gap-2">
+    <span class="text-yellow-400">▶️</span> Trailer
+  </h3>
+    <div class="rounded-xl overflow-hidden shadow-2xl">
       <iframe
         [src]="trailerUrl | safeUrl"
         width="100%"
-        height="400"
+        height="500"
         frameborder="0"
-        allowfullscreen>
+        allowfullscreen
+        class="rounded-xl">
       </iframe>
     </div>
-
-    </div>
   </div>
+
 </div>
-
-
-
